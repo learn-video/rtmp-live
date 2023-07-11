@@ -1,0 +1,15 @@
+services:
+  rtmp:
+    image: alfg/nginx-rtmp
+    ports:
+      - "1935:1935"
+      - "8080:8080"
+    volumes:
+      - ./rtmp/live.conf:/etc/nginx/nginx.conf.template
+  auth:
+    build: auth
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./auth:/auth
+    command: go run /auth/main.go
