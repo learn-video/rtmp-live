@@ -1,4 +1,4 @@
-package main
+package auth
 
 import (
 	"fmt"
@@ -21,7 +21,7 @@ func authorize(c echo.Context) error {
 	return c.NoContent(500)
 }
 
-func main() {
+func RunServer() {
 	e := echo.New()
 	e.Use(middleware.Logger())
 	e.GET("/authorize", authorize)

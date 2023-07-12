@@ -7,9 +7,9 @@ services:
     volumes:
       - ./rtmp/live.conf:/etc/nginx/nginx.conf.template
   auth:
-    build: auth
+    build: stream-handler
     ports:
       - "9090:9090"
     volumes:
-      - ./auth:/auth
-    command: go run /auth/main.go
+      - ./stream-handler:/stream-handler
+    command: go run /stream-handler/main.go auth_server
