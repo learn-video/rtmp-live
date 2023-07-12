@@ -1,4 +1,4 @@
-module github.com/learn-video/rtmp-ingest
+module github.com/learn-video/rtmp-live
 
 go 1.20
 
