@@ -15,6 +15,7 @@ func NewRootCmd() *cobra.Command {
 		SilenceErrors: true,
 	}
 	rootCmd.AddCommand(RunAuthServer())
+	rootCmd.AddCommand(RunDiscovery())
 	return rootCmd
 }
 

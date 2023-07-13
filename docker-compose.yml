@@ -6,6 +6,7 @@ services:
       - "8080:8080"
     volumes:
       - ./rtmp/live.conf:/etc/nginx/nginx.conf.template
+      - video_files:/opt/data/hls
   auth:
     build: stream-handler
     ports:
@@ -13,3 +14,12 @@ services:
     volumes:
       - ./stream-handler:/stream-handler
     command: go run /stream-handler/main.go auth_server
+  discovery:
+    build: stream-handler
+    volumes:
+      - ./stream-handler:/stream-handler
+      - video_files:/hls
+    command: go run /stream-handler/main.go discovery
+
+volumes:
+  video_files:
