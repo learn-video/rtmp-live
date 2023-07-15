@@ -8,6 +8,7 @@ import (
 	"regexp"
 	"time"
 
+	"github.com/go-resty/resty/v2"
 	"github.com/radovskyb/watcher"
 )
 
@@ -50,7 +51,17 @@ func ReportStream(filename string) {
 	fullDir, file := filepath.Split(filename)
 	dir := path.Base(fullDir)
 	stream := Stream{Name: dir, Manifest: file, Host: GetHostIP()}
-	log.Println(stream)
+
+	client := resty.New()
+	resp, err := client.R().
+		SetHeader("Content-Type", "application/json").
+		SetBody(stream).
+		Post("http://api:9090/streams")
+	if err != nil {
+		log.Print(err)
+		return
+	}
+	log.Printf("Resut from /streams API: %d", resp.StatusCode())
 }
 
 func GetHostIP() string {
