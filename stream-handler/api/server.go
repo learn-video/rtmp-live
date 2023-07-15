@@ -26,7 +26,7 @@ func NewReportHandler(rc *redis.Client) *ReportHandler {
 func authorize(c echo.Context) error {
 	streamName := c.QueryParam("name")
 	log.Printf("Authorizing ingest for: %s\n", streamName)
-	if streamName == "12345" {
+	if streamName == "golive" {
 		log.Printf("Allowed ingest for: %s\n", streamName)
 		locationURL := fmt.Sprintf("rtmp://127.0.0.1:1935/hls/%s", streamName)
 		c.Response().Header().Set("Location", locationURL)
