@@ -20,6 +20,8 @@ services:
       - ./stream-handler:/stream-handler
       - video_files:/hls
     command: go run /stream-handler/main.go discovery
+    environment:
+      - HLS_PATH=/hls
 
 volumes:
   video_files:

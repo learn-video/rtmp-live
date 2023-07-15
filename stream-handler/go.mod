@@ -3,6 +3,7 @@ module github.com/learn-video/rtmp-live
 go 1.20
 
 require (
+	github.com/caarlos0/env/v9 v9.0.0
 	github.com/labstack/echo/v4 v4.10.2
 	github.com/radovskyb/watcher v1.0.7
 	github.com/spf13/cobra v1.7.0

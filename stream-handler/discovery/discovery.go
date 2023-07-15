@@ -1,6 +1,7 @@
 package discovery
 
 import (
+	"io/fs"
 	"log"
 	"regexp"
 	"time"
@@ -8,7 +9,7 @@ import (
 	"github.com/radovskyb/watcher"
 )
 
-func Watch() {
+func Watch(c Config) {
 	w := watcher.New()
 	w.SetMaxEvents(1)
 	w.FilterOps(watcher.Create, watcher.Write)
@@ -28,11 +29,19 @@ func Watch() {
 		}
 	}()
 
-	if err := w.AddRecursive("/hls"); err != nil {
+	if err := w.AddRecursive(c.HLSPath); err != nil {
 		log.Fatalln(err)
 	}
 
 	if err := w.Start(time.Millisecond * 200); err != nil {
 		log.Fatalln(err)
 	}
+}
+
+func ReportStream(f fs.FileInfo) {
+	if f.IsDir() {
+		return
+	}
+
+	log.Printf("File: %s", f.Name())
 }
