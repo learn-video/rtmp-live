@@ -3,13 +3,14 @@ package api
 import (
 	"fmt"
 	"log"
+	"net/http"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/redis/go-redis/v9"
 )
 
-type Stream struct {
+type StreamData struct {
 	Name     string `json:"name"`
 	Manifest string `json:"manifest"`
 	Host     string `json:"host"`
@@ -37,12 +38,20 @@ func authorize(c echo.Context) error {
 }
 
 func (rh *ReportHandler) reportStream(c echo.Context) error {
-	stream := new(Stream)
-	if err := c.Bind(stream); err != nil {
+	streamData := new(StreamData)
+	if err := c.Bind(streamData); err != nil {
 		return err
 	}
-	ReportStream(stream, rh.rc)
-	return nil
+	stream := &Stream{
+		Name:     streamData.Name,
+		Manifest: streamData.Manifest,
+		Host:     streamData.Host,
+	}
+	if err := ReportStream(stream, rh.rc); err != nil {
+		log.Print(err)
+		c.NoContent(http.StatusInternalServerError)
+	}
+	return c.NoContent(http.StatusOK)
 }
 
 func RunServer() {

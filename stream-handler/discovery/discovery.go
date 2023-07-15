@@ -29,7 +29,7 @@ func Watch(c Config) {
 		for {
 			select {
 			case event := <-w.Event:
-				ReportStream(event.Path)
+				ReportStream(event.Path, c.IP)
 			case err := <-w.Error:
 				log.Println(err)
 			case <-w.Closed:
@@ -47,10 +47,13 @@ func Watch(c Config) {
 	}
 }
 
-func ReportStream(filename string) {
+func ReportStream(filename, ip string) {
 	fullDir, file := filepath.Split(filename)
 	dir := path.Base(fullDir)
-	stream := Stream{Name: dir, Manifest: file, Host: GetHostIP()}
+	if ip != "" {
+		ip = GetHostIP()
+	}
+	stream := Stream{Name: dir, Manifest: file, Host: ip}
 
 	client := resty.New()
 	resp, err := client.R().
@@ -61,7 +64,7 @@ func ReportStream(filename string) {
 		log.Print(err)
 		return
 	}
-	log.Printf("Resut from /streams API: %d", resp.StatusCode())
+	log.Printf("Result from /streams API: %d", resp.StatusCode())
 }
 
 func GetHostIP() string {

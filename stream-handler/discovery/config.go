@@ -4,6 +4,7 @@ import "github.com/caarlos0/env/v9"
 
 type Config struct {
 	HLSPath string `env:"HLS_PATH"`
+	IP      string `env:"IP"`
 }
 
 func LoadConfig() (Config, error) {
