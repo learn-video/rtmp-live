@@ -1,13 +1,19 @@
 package discovery
 
 import (
-	"io/fs"
 	"log"
+	"path"
+	"path/filepath"
 	"regexp"
 	"time"
 
 	"github.com/radovskyb/watcher"
 )
+
+type Stream struct {
+	Name     string `json:"name"`
+	Manifest string `json:"manifest"`
+}
 
 func Watch(c Config) {
 	w := watcher.New()
@@ -20,7 +26,7 @@ func Watch(c Config) {
 		for {
 			select {
 			case event := <-w.Event:
-				log.Println(event)
+				ReportStream(event.Path)
 			case err := <-w.Error:
 				log.Println(err)
 			case <-w.Closed:
@@ -38,10 +44,9 @@ func Watch(c Config) {
 	}
 }
 
-func ReportStream(f fs.FileInfo) {
-	if f.IsDir() {
-		return
-	}
-
-	log.Printf("File: %s", f.Name())
+func ReportStream(filename string) {
+	fullDir, file := filepath.Split(filename)
+	dir := path.Base(fullDir)
+	stream := Stream{Name: dir, Manifest: file}
+	log.Println(stream)
 }
