@@ -30,6 +30,12 @@ services:
     image: redis:7.0.12-alpine
     ports:
       - "6379:6379"
+  edge:
+    build: edge
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./edge/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
 
 volumes:
   video_files:
