@@ -56,14 +56,13 @@ func (rh *ReportHandler) reportStream(c echo.Context) error {
 
 func (rh *ReportHandler) fetchStream(c echo.Context) error {
 	streamName := c.Param("stream")
-	path, err := FetchStream(streamName, rh.rc)
+	stream, err := FetchStream(streamName, rh.rc)
 	if err == ErrStreamNotFound {
 		return c.NoContent(http.StatusNotFound)
 	}
 	if err != nil {
 		return c.NoContent(http.StatusInternalServerError)
 	}
-	stream := Stream{Name: streamName, Manifest: path}
 	return c.JSON(http.StatusOK, stream)
 }
 

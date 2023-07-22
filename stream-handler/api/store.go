@@ -2,8 +2,8 @@ package api
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
-	"fmt"
 	"time"
 
 	"github.com/redis/go-redis/v9"
@@ -19,10 +19,6 @@ type Stream struct {
 	Host     string
 }
 
-func (s *Stream) Path() string {
-	return fmt.Sprintf("%s:%s", s.Host, s.Manifest)
-}
-
 func NewRedis(c Config) *redis.Client {
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     c.RedisAddr,
@@ -34,16 +30,25 @@ func NewRedis(c Config) *redis.Client {
 }
 
 func ReportStream(s *Stream, r *redis.Client) error {
-	return r.Set(context.Background(), s.Name, s.Path(), 30*time.Second).Err()
+	data, err := json.Marshal(s)
+	if err != nil {
+		return err
+	}
+	return r.Set(context.Background(), s.Name, data, 30*time.Second).Err()
 }
 
-func FetchStream(streamName string, r *redis.Client) (string, error) {
+func FetchStream(streamName string, r *redis.Client) (Stream, error) {
 	res, err := r.Get(context.Background(), streamName).Result()
 	if err == redis.Nil {
-		return "", ErrStreamNotFound
+		return Stream{}, ErrStreamNotFound
 	} else if err != nil {
-		return "", err
+		return Stream{}, err
 	} else {
-		return res, nil
+		var stream Stream
+		err := json.Unmarshal([]byte(res), &stream)
+		if err != nil {
+			return Stream{}, err
+		}
+		return stream, nil
 	}
 }
