@@ -14,9 +14,9 @@ var (
 )
 
 type Stream struct {
-	Name     string
-	Manifest string
-	Host     string
+	Name     string `json:"name"`
+	Manifest string `json:"manifest"`
+	Host     string `json:"host"`
 }
 
 func NewRedis(c Config) *redis.Client {

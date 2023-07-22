@@ -10,12 +10,6 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
-type StreamData struct {
-	Name     string `json:"name"`
-	Manifest string `json:"manifest"`
-	Host     string `json:"host"`
-}
-
 type ReportHandler struct {
 	rc *redis.Client
 }
@@ -38,15 +32,11 @@ func authorize(c echo.Context) error {
 }
 
 func (rh *ReportHandler) reportStream(c echo.Context) error {
-	streamData := new(StreamData)
-	if err := c.Bind(streamData); err != nil {
+	stream := new(Stream)
+	if err := c.Bind(stream); err != nil {
 		return err
 	}
-	stream := &Stream{
-		Name:     streamData.Name,
-		Manifest: streamData.Manifest,
-		Host:     streamData.Host,
-	}
+
 	if err := ReportStream(stream, rh.rc); err != nil {
 		log.Print(err)
 		c.NoContent(http.StatusInternalServerError)
