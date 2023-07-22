@@ -54,6 +54,19 @@ func (rh *ReportHandler) reportStream(c echo.Context) error {
 	return c.NoContent(http.StatusOK)
 }
 
+func (rh *ReportHandler) fetchStream(c echo.Context) error {
+	streamName := c.Param("stream")
+	path, err := FetchStream(streamName, rh.rc)
+	if err == ErrStreamNotFound {
+		return c.NoContent(http.StatusNotFound)
+	}
+	if err != nil {
+		return c.NoContent(http.StatusInternalServerError)
+	}
+	stream := Stream{Name: streamName, Manifest: path}
+	return c.JSON(http.StatusOK, stream)
+}
+
 func RunServer() {
 	cfg, err := LoadConfig()
 	if err != nil {
@@ -65,5 +78,6 @@ func RunServer() {
 	e.Use(middleware.Logger())
 	e.GET("/authorize", authorize)
 	e.POST("/streams", rh.reportStream)
+	e.GET("/streams/:stream", rh.fetchStream)
 	log.Fatal(e.Start(":9090"))
 }
