@@ -26,6 +26,7 @@ services:
     environment:
       - HLS_PATH=/hls
       - IP=127.0.0.1
+      - DISCOVERY_API_URL=http://api:9090
   redis:
     image: redis:7.0.12-alpine
     ports:

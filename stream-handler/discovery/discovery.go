@@ -29,7 +29,7 @@ func Watch(c Config) {
 		for {
 			select {
 			case event := <-w.Event:
-				ReportStream(event.Path, c.IP)
+				ReportStream(c.DiscoveryAPIURL, event.Path, c.IP)
 			case err := <-w.Error:
 				log.Println(err)
 			case <-w.Closed:
@@ -47,7 +47,7 @@ func Watch(c Config) {
 	}
 }
 
-func ReportStream(filename, ip string) {
+func ReportStream(apiURL, filename, ip string) {
 	fullDir, file := filepath.Split(filename)
 	dir := path.Base(fullDir)
 	if ip != "" {
@@ -55,11 +55,11 @@ func ReportStream(filename, ip string) {
 	}
 	stream := Stream{Name: dir, Manifest: file, Host: ip}
 
-	client := resty.New()
+	client := resty.New().SetBaseURL(apiURL)
 	resp, err := client.R().
 		SetHeader("Content-Type", "application/json").
 		SetBody(stream).
-		Post("http://api:9090/streams")
+		Post("/streams")
 	if err != nil {
 		log.Print(err)
 		return
