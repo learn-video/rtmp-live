@@ -6,6 +6,7 @@ import (
 	"path"
 	"path/filepath"
 	"regexp"
+	"strings"
 	"time"
 
 	"github.com/go-resty/resty/v2"
@@ -50,7 +51,7 @@ func Watch(c Config) {
 func ReportStream(apiURL, filename, ip string) {
 	fullDir, file := filepath.Split(filename)
 	dir := path.Base(fullDir)
-	if ip != "" {
+	if strings.TrimSpace(ip) == "" {
 		ip = GetHostIP()
 	}
 	stream := Stream{Name: dir, Manifest: file, Host: ip}
