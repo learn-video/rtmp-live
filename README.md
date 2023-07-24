@@ -33,3 +33,15 @@ It is the server delivered by the platform you are using to watch the video, thi
 The Edge server serves as the intermediary between the end-users and the video content they wish to watch. When you access a video on the platform, your media player interacts with the Edge server, which efficiently delivers the video content to your device. This playable URL comes through an HTTP API and it is out of the scope of this educational project.
 
 Our Edge component here is responsible for retrieving from an HTTP API which Origin server the content will come from, and stick to it through the playback.
+
+```mermaid
+graph LR
+
+style Edge fill:#FFC107, stroke:#000, stroke-width:2px, r:10px
+style API fill:#4CAF50, stroke:#000, stroke-width:2px, r:10px
+style Origin fill:#2196F3, stroke:#000, stroke-width:2px, r:10px
+
+Edge("Edge") -- Which servers holds the content? --> API("HTTP API")
+API -- Returns JSON with data --> Edge
+Edge -- Proxies Request --> Origin("Origin Server")
+```
