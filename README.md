@@ -14,3 +14,12 @@ graph LR
     A -- Request content --> D[Origin Server 1]
     E[Origin Server 2]
 ```
+
+## What's the stack behind it?
+
+This small live streaming platform relies on the the following projects:
+
+* [`NGINX-RTMP`](https://github.com/arut/nginx-rtmp-module) - the widely, battle testes and probably the most famous RTMP server
+* [`NGINX`](https://www.nginx.com/) - the most used werb server in the world
+* [`Lua`](https://www.lua.org/) - a simple yet very powerful programing language 🇧🇷
+* [`Go`](https://go.dev/) - a good language to build HTTP APIs, workers, daemons and every kind of distribued system service
