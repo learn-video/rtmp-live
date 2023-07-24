@@ -25,7 +25,7 @@ services:
     command: go run /stream-handler/main.go discovery
     environment:
       - HLS_PATH=/hls
-      - IP=127.0.0.1
+      - IP=rtmp
       - DISCOVERY_API_URL=http://api:9090
   redis:
     image: redis:7.0.12-alpine
