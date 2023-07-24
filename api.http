@@ -1,0 +1,19 @@
+@apiURL = http://localhost:9090
+@jsonContentType = application/json
+@streamName = golive
+
+###
+
+POST {{apiURL}}/streams
+Content-Type: {{jsonContentType}}
+
+{
+    "name": "{{streamName}}",
+    "manifest": "index.m3u8",
+    "host": "127.0.0.1"
+}
+
+###
+
+GET {{apiURL}}/streams/{{streamName}}
+Accept: {{jsonContentType}}
