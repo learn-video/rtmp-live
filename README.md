@@ -94,3 +94,25 @@ Encoder("Encoder (e.g., OBS)") --> RTMPLB("RTMP Load Balancer")
 RTMPLB --> OriginA("Origin A")
 RTMPLB --> OriginB("Origin B")
 ```
+
+### Discovery
+
+The Discovery service is responsible for tracking and identifying which server holds a specific streaming content. This becomes especially important when multiple encoders are feeding the Origin Service with different content, and the platform needs to determine the appropriate server(s) to deliver the content when requested by users.
+
+It is deployed aside with the Origin service. The reason is because we continuously need to know whether the video feeding is up and running.
+
+```mermaid
+sequenceDiagram
+    participant DS as Discovery Service
+    participant FS as Filesystem
+    participant API as HTTP API Reporting
+
+    loop Watch filesystem events
+        DS->>FS: Check if manifests are being created/updated
+    end
+
+    Note right of DS: Accesses the filesystem to verify if the streaming is working
+    DS->>API: Report Host (IP), manifest path, stream name (e.g golive)
+    Note right of DS: Sends relevant information to the HTTP API
+
+```
