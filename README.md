@@ -105,7 +105,7 @@ It is deployed aside with the Origin service. The reason is because we continuou
 sequenceDiagram
     participant DS as Discovery Service
     participant FS as Filesystem
-    participant API as HTTP API Reporting
+    participant API as HTTP API
 
     loop Watch filesystem events
         DS->>FS: Check if manifests are being created/updated
