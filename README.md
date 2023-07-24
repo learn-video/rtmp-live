@@ -45,3 +45,28 @@ Edge("Edge") -- Which servers holds the content? --> API("HTTP API")
 API -- Returns JSON with data --> Edge
 Edge -- Proxies Request --> Origin("Origin Server")
 ```
+
+A typical response from the HTTP API looks like this:
+
+```json
+{
+    "name": "golive",
+    "manifest": "index.m3u8",
+    "host": "127.0.0.1"
+}
+```
+
+We use these values in the [proxy_pass directive](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) to proxy the request to the correct origin server.
+
+
+```nginx
+location ~ "/(?<stream>[^/]*)/index.m3u8$" {
+    set $target "";
+
+    access_by_lua_block {
+        ngx.var.target = router.fetch_streams(ngx.var.stream)
+    }
+
+    proxy_pass http://$target;
+}
+```
