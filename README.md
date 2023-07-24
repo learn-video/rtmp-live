@@ -81,3 +81,16 @@ Keys characteristics of the Origin service are:
 * Packager: the Origin service packages the video for user consumption, fragments it into segments, and generates [HLS](https://developer.apple.com/streaming/) manifests.
 * Storage: in addition to packaging, the Origin service stores all the video content.
 * Delivery: as the backbone of content distribution, it acts as an upstream to the Edge servers, efficiently delivering content when requested.
+
+```mermaid
+graph TD
+
+style Encoder fill:#B2DFDB, stroke:#000, stroke-width:2px, r:10px
+style RTMPLB fill:#FFCC80, stroke:#000, stroke-width:2px, r:10px
+style OriginA fill:#BBDEFB, stroke:#000, stroke-width:2px, r:10px
+style OriginB fill:#BBDEFB, stroke:#000, stroke-width:2px, r:10px
+
+Encoder("Encoder (e.g., OBS)") --> RTMPLB("RTMP Load Balancer")
+RTMPLB --> OriginA("Origin A")
+RTMPLB --> OriginB("Origin B")
+```
