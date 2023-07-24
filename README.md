@@ -70,3 +70,14 @@ location ~ "/(?<stream>[^/]*)/index.m3u8$" {
     proxy_pass http://$target;
 }
 ```
+
+## Origin
+
+The Origin is the component responsible for receiving the video (ingest), storing and serving the original video content to the Edge servers and users.
+
+Keys characteristics of the Origin service are:
+
+* Ingest: it receives the video feed from an encoder, such as [Elemental](https://aws.amazon.com/elemental-server/) or [OBS Studio](https://obsproject.com/), serving as the entry point for content upload.
+* Packager: the Origin service packages the video for user consumption, fragments it into segments, and generates [HLS](https://developer.apple.com/streaming/) manifests.
+* Storage: in addition to packaging, the Origin service stores all the video content.
+* Delivery: as the backbone of content distribution, it acts as an upstream to the Edge servers, efficiently delivering content when requested.
