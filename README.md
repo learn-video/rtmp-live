@@ -114,5 +114,8 @@ sequenceDiagram
     Note right of DS: Accesses the filesystem to verify if the streaming is working
     DS->>API: Report Host (IP), manifest path, stream name (e.g golive)
     Note right of DS: Sends relevant information to the HTTP API
-
 ```
+
+## API
+
+The HTTP API used by the Discovery Service performs two critical functions. Firstly, it enables real-time updates to Redis keys, ensuring the tracking of changes in streaming manifests. By utilizing TTL for Redis keys, the API automatically removes keys when the encoder goes offline or when the live streaming session ends. As a result, the platform stops offering the corresponding live content.
