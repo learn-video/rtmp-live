@@ -10,9 +10,9 @@ Additionally, a service discovery process is included to report the active strea
 graph LR
     A[Edge] -- Which server should I request video? --> B[API]
     B -- Get server --> C[Redis]
-    B -- Response with Origin Server 1 --> A
-    A -- Request content --> D[Origin Server 1]
-    E[Origin Server 2]
+    B -- Response with Origin A --> A
+    A -- Request content --> D[Origin A]
+    E[Origin B]
 ```
 
 ## What's the stack behind it?
