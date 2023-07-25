@@ -146,6 +146,10 @@ RTMPLB --> OriginA("Origin A")
 RTMPLB --> OriginB("Origin B")
 ```
 
+In live streaming, using distributed storage is impractical due to latency issues. To maintain low latency and avoid buffering during streaming, video packagers opt for local storage. This approach reduces the time it takes to access and deliver content to viewers, ensuring a greater playback experience.
+
+To determine which server hosts specific content, such as *World Cup Finals* or *Playing Final Fantasy*, we implement a Discovery program. This program tracks the locations of various streams and provides the necessary information for efficient content delivery. By leveraging the Discovery program, our platform optimizes content distribution, guaranteeing a seamless live streaming experience for viewers.
+
 ### Discovery
 
 The Discovery service is responsible for tracking and identifying which server holds a specific streaming content. This becomes especially important when multiple encoders are feeding the Origin Service with different content, and the platform needs to determine the appropriate server(s) to deliver the content when requested by users.
