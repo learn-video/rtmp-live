@@ -59,7 +59,7 @@ To use the platform, follow these steps:
 
 There is also a test video that can be generated using ffmpeg:
 
-```console
+```
 ffmpeg -re -f lavfi -i "smptehdbars=rate=30:size=1920x1080" \
         -f lavfi -i "sine=frequency=1000:sample_rate=48000" \
         -vf drawtext="text='YOUR MESSAGE %{localtime\:%X}':rate=30:x=(w-tw)/2:y=(h-lh)/2:fontsize=48:fontcolor=white:box=1:boxcolor=black" \
