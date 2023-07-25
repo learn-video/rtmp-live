@@ -40,7 +40,9 @@ To use the platform, follow these steps:
 3. Configure OBS Studio to stream via RTMP using the following settings:
 
     Stream Type: Custom Streaming Server
+
     URL: rtmp://localhost:1935/live
+
     Stream Key: [Enter Stream Key here] (e.g golive)
 
 4. Start your live streaming session in OBS Studio. The platform will now receive your live stream and make it available for playback.
