@@ -194,7 +194,7 @@ The HTTP API used by the Discovery Service performs two critical functions. Firs
 
 You can try the API using the VSCode [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension. Open the [api.http file](api.http)
 
-The API counts with three routes:
+The API has three routes:
 
 * GET [`/authorize`](http://localhost:9090/authorize) - used to authorize RTMP ingest
 * POST [`/streams`](http://localhost:9090/streams) - report live streaming content
