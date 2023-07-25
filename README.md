@@ -24,6 +24,31 @@ This small live streaming platform relies on the following projects:
 * [`Lua`](https://www.lua.org/) - a simple yet very powerful programing language 🇧🇷
 * [`Go`](https://go.dev/) - a good language to build HTTP APIs, workers, daemons and every kind of distribued system service
 
+## How to use
+
+There are some requirements you need to run this project:
+* [Docker Compose](https://docs.docker.com/compose/)
+* [OBS Studio](https://obsproject.com/)
+
+Now you are good to go!
+
+To use the platform, follow these steps:
+
+1. Open your terminal and execute the command:
+```docker-compose up```
+2. Once all the components are up and running, launch OBS Studio on your computer.
+3. Configure OBS Studio to stream via RTMP using the following settings:
+
+    Stream Type: Custom Streaming Server
+    URL: rtmp://localhost:1935/live
+    Stream Key: [Enter Stream Key here] (e.g golive)
+
+4. Start your live streaming session in OBS Studio. The platform will now receive your live stream and make it available for playback.
+
+![RTMP Settings](misc/rtmp_settings.png)
+
+*There are plenty of tutorials on how to use OBS Studio on the internet. They will be much, much bettern than any of my attempts here.*
+
 ## Edge - CDN
 
 The Edge server, often referred to as "the frontend server" is an essential component of the Content Delivery Network (CDN). It plays a crucial role in the media streaming platform, facilitating a seamless viewing experience for users.
