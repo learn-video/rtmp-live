@@ -163,7 +163,7 @@ sequenceDiagram
     Note right of DS: Sends relevant information to the HTTP API
 ```
 
-[RTMP](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) server supports authorization through *on_publish* callback. Our platform uses it and call the HTTP API to authorize the ingest issuing a HTTP GET request with some named parameters.
+Our [RTMP](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) server supports authorization through an *on_publish* callback. This functionality plays a vital role in our platform, as it allows us to ensure secure ingest of live streams. When a new stream is published, the RTMP server triggers the on_publish callback, and our platform calls the HTTP API to authorize the ingest.
 
 ```nginx
 application stream {
