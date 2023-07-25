@@ -41,7 +41,7 @@ To use the platform, follow these steps:
 
     Stream Type: Custom Streaming Server
 
-    URL: rtmp://localhost:1935/live
+    URL: rtmp://localhost:1935/stream
 
     Stream Key: golive
 
