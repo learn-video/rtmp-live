@@ -52,6 +52,7 @@ To use the platform, follow these steps:
     Stream Key: golive
 
 4. Start your live streaming session in OBS Studio. The platform will now receive your live stream and make it available for playback.
+5. Use a player like [VLC](https://www.videolan.org/vlc/) and point it to http://127.0.0.1:8080/golive/index.m3u8. You can also use a browser with a proper extension to play HLS.
 
 ![RTMP Settings](misc/rtmp_settings.png)
 
