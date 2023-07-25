@@ -56,7 +56,7 @@ To use the platform, follow these steps:
 
 ![RTMP Settings](misc/rtmp_settings.png)
 
-*There are plenty of tutorials on how to use OBS Studio on the internet. They will be much, much bettern than any of my attempts here.*
+*For detailed guidance on using OBS Studio, there are plenty of tutorials available on the internet. They provide comprehensive instructions and helpful tips for a smooth streaming setup.*
 
 ## Edge - CDN
 
