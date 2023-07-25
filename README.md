@@ -218,4 +218,4 @@ A basic architecture has been described. And now it is your time to think about 
 
 ---
 
-This documentation was heavily inspired by @leandromoreira [CDN up and running](https://github.com/leandromoreira/cdn-up-and-running)
+This documentation was heavily inspired by [@leandromoreira](https://github.com/leandromoreira/) [CDN up and running](https://github.com/leandromoreira/cdn-up-and-running)
