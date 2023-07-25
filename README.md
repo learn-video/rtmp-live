@@ -163,6 +163,31 @@ sequenceDiagram
     Note right of DS: Sends relevant information to the HTTP API
 ```
 
+[RTMP](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) server supports authorization through *on_publish* callback. Our platform uses it and call the HTTP API to authorize the ingest issuing a HTTP GET request with some named parameters.
+
+```nginx
+application stream {
+    live on;
+    record off;
+    notify_method get;
+    on_publish http://api:9090/authorize;
+}
+```
+
+Content delivey is supported using a location with the [alias](http://nginx.org/en/docs/http/ngx_http_core_module.html#alias) directive:
+
+```nginx
+ location / {
+    alias /opt/data/hls/;
+    types {
+        application/vnd.apple.mpegurl m3u8;
+        video/mp2t ts;
+    }
+    add_header Cache-Control no-cache;
+    add_header Access-Control-Allow-Origin *;
+}
+```
+
 ## API
 
 The HTTP API used by the Discovery Service performs two critical functions. Firstly, it enables real-time updates to Redis keys, ensuring the tracking of changes in streaming manifests. By utilizing TTL for Redis keys, the API automatically removes keys when the encoder goes offline or when the live streaming session ends. As a result, the platform stops offering the corresponding live content.
