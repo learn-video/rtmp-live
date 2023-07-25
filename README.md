@@ -166,3 +166,11 @@ sequenceDiagram
 ## API
 
 The HTTP API used by the Discovery Service performs two critical functions. Firstly, it enables real-time updates to Redis keys, ensuring the tracking of changes in streaming manifests. By utilizing TTL for Redis keys, the API automatically removes keys when the encoder goes offline or when the live streaming session ends. As a result, the platform stops offering the corresponding live content.
+
+You can try the API using the VSCode [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension. Open the [api.http file](api.http)
+
+The API counts with three routes:
+
+* GET [`/authorize`](http://localhost:9090/authorize) - used to authorize RTMP ingest
+* POST [`/streams/golive`](http://localhost:9090/streams) - report live streaming content
+* GET [`/streams/golive`](http://localhost:9090/streams/golive) - playback information for the given stream name
