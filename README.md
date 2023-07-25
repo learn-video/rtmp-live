@@ -42,7 +42,7 @@ Now you are good to go!
 To use the platform, follow these steps:
 
 1. Open your terminal and execute the command:
-```docker-compose up```
+```docker compose up```
 2. Once all the components are up and running, launch OBS Studio on your computer.
 3. Configure OBS Studio to stream via RTMP using the following settings:
 
