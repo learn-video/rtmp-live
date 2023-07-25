@@ -2,7 +2,7 @@
 
 ## What is this?
 
-This repository provides a comprehensive guide and code samples for creating a small streaming platform based on the **RTMP** (Real-Time Messaging Protocol). The platform enables live streaming capabilities and leverages NGINX RTMP for receiving video streams. Additionally, the repository includes functionality to play the recorded videos via HTTP directly from another pool of servers.
+This repository provides a comprehensive guide and code samples for creating a small streaming platform based on the [RTMP]((https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol)) (Real-Time Messaging Protocol). The platform enables live streaming capabilities and leverages NGINX RTMP for receiving video streams. Additionally, the repository includes functionality to play the recorded videos via HTTP directly from another pool of servers.
 
 Additionally, a service discovery process is included to report the active streams to an API. The API, integrated with Redis, returns the server and manifest path required for playback.
 
@@ -171,7 +171,7 @@ sequenceDiagram
     Note right of DS: Sends relevant information to the HTTP API
 ```
 
-Our [RTMP](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) server supports authorization through an *on_publish* callback. This functionality plays a vital role in our platform, as it allows us to ensure secure ingest of live streams. When a new stream is published, the RTMP server triggers the on_publish callback, and our platform calls the HTTP API to authorize the ingest.
+Our RTMP server supports authorization through an *on_publish* callback. This functionality plays a vital role in our platform, as it allows us to ensure secure ingest of live streams. When a new stream is published, the RTMP server triggers the on_publish callback, and our platform calls the HTTP API to authorize the ingest.
 
 ```nginx
 application stream {
@@ -212,6 +212,6 @@ The API has three routes:
 
 A basic architecture has been described. And now it is your time to think about next steps for our live streaming platform:
 
-* **Best possible experience**: aTo ensure the best possible viewer experience, explore implementing adaptive bitrate streaming. Read about [Adaptive bitrate streaming](https://en.wikipedia.org/wiki/Adaptive_bitrate_streaming)
+* **Best possible experience**: to ensure the best possible viewer experience, explore implementing adaptive bitrate streaming. Read about [Adaptive bitrate streaming](https://en.wikipedia.org/wiki/Adaptive_bitrate_streaming)
 * **Increased Resiliency**: what happens if the HTTP API goes offline for 5 minutes? How can the system handle and recover from such scenarios without compromising content availability?
 * **Scalability**: to reduce latency while maintaining content delivery efficiency, explore techniques that can lower latency without reducing the segment size
