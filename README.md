@@ -176,3 +176,9 @@ The API counts with three routes:
 * GET [`/streams/golive`](http://localhost:9090/streams/golive) - playback information for the given stream name
 
 ## Your turn
+
+A basic architecture has been described. And now it is your time to think about next steps for our live streaming platform:
+
+* **Best possible experience**: aTo ensure the best possible viewer experience, explore implementing adaptive bitrate streaming. Read about [Adaptive bitrate streaming](https://en.wikipedia.org/wiki/Adaptive_bitrate_streaming)
+* **Increased Resiliency**: what happens if the HTTP API goes offline for 5 minutes? How can the system handle and recover from such scenarios without compromising content availability?
+* **Scalability**: to reduce latency while maintaining content delivery efficiency, explore techniques that can lower latency without reducing the segment size
