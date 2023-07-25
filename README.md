@@ -177,7 +177,7 @@ application stream {
 Content delivey is supported using a location with the [alias](http://nginx.org/en/docs/http/ngx_http_core_module.html#alias) directive:
 
 ```nginx
- location / {
+location / {
     alias /opt/data/hls/;
     types {
         application/vnd.apple.mpegurl m3u8;
