@@ -15,6 +15,12 @@ graph LR
     E[Origin B]
 ```
 
+Platform components:
+
+* Origin: ingest, storage and content origin
+* Edge: CDN, server you use to play the video
+* API: tracks Origin servers
+
 ## What's the stack behind it?
 
 This small live streaming platform relies on the following projects:
