@@ -35,6 +35,7 @@ This small live streaming platform relies on the following projects:
 There are some requirements you need to run this project:
 * [Docker Compose](https://docs.docker.com/compose/)
 * [OBS Studio](https://obsproject.com/)
+* [ffmpeg]
 
 Now you are good to go!
 
@@ -53,6 +54,16 @@ To use the platform, follow these steps:
 
 4. Start your live streaming session in OBS Studio. The platform will now receive your live stream and make it available for playback.
 5. Use a player like [VLC](https://www.videolan.org/vlc/) and point it to http://127.0.0.1:8080/golive/index.m3u8. You can also use a browser with a proper extension to play HLS.
+
+There is also a test video that can be generated using ffmpeg:
+
+```console
+ffmpeg -re -f lavfi -i "smptehdbars=rate=30:size=1920x1080" \
+        -f lavfi -i "sine=frequency=1000:sample_rate=48000" \
+        -vf drawtext="text='YOUR MESSAGE %{localtime\:%X}':rate=30:x=(w-tw)/2:y=(h-lh)/2:fontsize=48:fontcolor=white:box=1:boxcolor=black" \
+        -f flv -c:v h264 -profile:v baseline -pix_fmt yuv420p -preset ultrafast -tune zerolatency -crf 28 -g 60 -c:a aac \
+        "rtmp://localhost:1935/stream/golive"
+```
 
 ![RTMP Settings](misc/rtmp_settings.png)
 
