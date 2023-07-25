@@ -33,9 +33,9 @@ This small live streaming platform relies on the following projects:
 ## How to use
 
 There are some requirements you need to run this project:
-* [Docker Compose](https://docs.docker.com/compose/)
-* [OBS Studio](https://obsproject.com/)
-* [ffmpeg](https://www.ffmpeg.org/)
+* [`Docker Compose`](https://docs.docker.com/compose/)
+* [`OBS Studio`](https://obsproject.com/)
+* [`ffmpeg`](https://www.ffmpeg.org/)
 
 Now you are good to go!
 
