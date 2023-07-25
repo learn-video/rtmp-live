@@ -172,5 +172,7 @@ You can try the API using the VSCode [Rest Client](https://marketplace.visualstu
 The API counts with three routes:
 
 * GET [`/authorize`](http://localhost:9090/authorize) - used to authorize RTMP ingest
-* POST [`/streams/golive`](http://localhost:9090/streams) - report live streaming content
+* POST [`/streams`](http://localhost:9090/streams) - report live streaming content
 * GET [`/streams/golive`](http://localhost:9090/streams/golive) - playback information for the given stream name
+
+## Your turn
