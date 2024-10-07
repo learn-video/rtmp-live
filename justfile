@@ -1,5 +1,13 @@
 alias re := reload-edge
 
+# run project
+run:
+    docker compose up
+
+# stop project
+stop:
+    docker compose down
+
 # reload NGINX
 reload-edge:
     docker compose kill edge -s SIGHUP

@@ -20,7 +20,7 @@ router.fetch_streams = function(stream_name)
   local stream = cjson.decode(res.body)
   ngx.log(ngx.INFO, "host: ", stream.host)
 
-  return stream.host .. "/" .. stream.name .. "/" .. stream.manifest, nil
+  return stream.host, nil
 end
 
 return router
