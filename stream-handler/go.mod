@@ -1,6 +1,6 @@
 module github.com/learn-video/rtmp-live
 
-go 1.20
+go 1.22
 
 require (
 	github.com/caarlos0/env/v9 v9.0.0
